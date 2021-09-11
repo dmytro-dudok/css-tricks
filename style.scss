@@ -1,0 +1,37 @@
+$containerMaxWidth: 1200;
+$maxWidth: 1920;
+
+@mixin adaptive-value($property, $startSize, $minSize, $type) {
+	$addSize: $startSize - $minSize;
+
+    //less then containerMaxWidth
+	@if $type == 1 {
+		#{$property}: $startSize + px;
+
+		@media (max-width: #{$containerMaxWidth + px}) {
+
+        #{$property}: calc(#{$minSize + px} + #{$addSize} * ((100vw - 320px) / (#{$maxWidth - 320})))
+    }
+    //bigger then containerMaxWidth
+	} @else if $type == 2 {
+        #{$property}: $startSize + px;
+
+        @media (min-width: #{$containerMaxWidth + px}) {
+
+            #{$property}: calc(#{$minSize + px} + #{$addSize} * ((100vw - 320px) / (#{$maxWidth - 320})))
+        }
+
+	} @else {
+        
+        #{$property}: calc(#{$minSize + px} + #{$addSize} * ((100vw - 320px) / (#{$maxWidth - 320})))
+	}
+}
+
+.block__body {
+	@include adaptive-value('padding', 50, 20, 1);
+}
+
+// adaptive property
+.block__body2 {
+    padding: calc(20px + (50 - 20) * ((100vw - 320px) / (1920 - 320)));
+}

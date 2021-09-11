@@ -1,0 +1,12 @@
+.block__body {
+  padding: 50px;
+}
+@media (max-width: 1200px) {
+  .block__body {
+    padding: calc(20px + 30 * ((100vw - 320px) / (1600)));
+  }
+}
+
+.block__body2 {
+  padding: calc(20px + (50 - 20) * ((100vw - 320px) / (1920 - 320)));
+}
